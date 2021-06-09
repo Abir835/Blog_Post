@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+    <h2 style="text-align: center">Sign up</h2>
+      <form method="post">
+        {% csrf_token %}
+
+          {% for feild in form %}
+              <p>
+                {{ feild.lebel_tag }}<br>
+                {{ feild }}
+                {% if feild.help_text %}
+                    <small style="color: gray">{{ feild.help_text }}</small>
+                {% endif %}
+                {% for error in feild.error %}
+                    <p style="color: red">{{ error }}</p>
+                {% endfor %}
+              </p>
+          {% endfor %}
+        <button type="submit">Sign up</button>
+      </form>
+    </div>
+{% endblock %}
